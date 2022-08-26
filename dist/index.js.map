@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sources":["../src/index.tsx"],"sourcesContent":["export default function PayButton() {\n  return 4;\n}\n"],"names":[],"mappings":";;;;;;;;;;;;;;;AAAc,SAAU,SAAS,GAAA;AAC/B,IAAA,OAAO,CAAC,CAAC;AACX;;;;"}
