@@ -7,11 +7,11 @@ A react integreation easy to use and setup for your application
 via yarn (recommended)
 
 ```
-yarn add @coinable/pay-button@1.0.0
+yarn add @coinable/pay-button@1.0.1
 ```
 
 via npm
 
 ```
-npm install @coinable/pay-button@1.0.0
+npm install @coinable/pay-button@1.0.1
 ```
