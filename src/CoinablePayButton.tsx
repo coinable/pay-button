@@ -37,7 +37,7 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
         setLoading(true);
 
         const response = await fetch(
-          'http://127.0.0.1:4000/v1/api/checkouts/sissdsdsdngle',
+          `https://api.coinablepay.com/v1/api/checkouts/single`,
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
