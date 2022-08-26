@@ -9,8 +9,6 @@
     "@types/react-dom": "^18.0.6",
     "babel-core": "^6.26.3",
     "babel-runtime": "^6.26.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rollup": "^2.78.1",
     "rollup-plugin-sass": "^1.2.13",
     "rollup-plugin-typescript2": "^0.33.0",

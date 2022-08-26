@@ -2,13 +2,15 @@
 
 .coinable-pay-button {
     transition: 150ms ease-in-out;
+    height: 48px;
     font-size: 18px;
     font-family: 'Inter';
     border: none;
     background: black;  
     color: white;
     border-radius: 5px;
-    padding: 10px 45px;
+    padding-left: 45px;
+    padding-right: 45px;
     cursor: pointer;
 
     &:hover {
@@ -21,4 +23,26 @@
     justify-content: center;
     align-items: center;
     gap: 3px;
+}
+
+
+@keyframes coinablerotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.coinable-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-bottom-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: coinablerotation 1.3s linear infinite;
 }
