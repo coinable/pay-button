@@ -1,3 +1,3 @@
-export default function PayButton() {
-  return 4;
-}
+import CoianblePayButton from './CoinablePayButton';
+
+export default CoianblePayButton;

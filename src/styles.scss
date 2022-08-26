@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.coinable-pay-button {
+    transition: 150ms ease-in-out;
+    font-size: 18px;
+    font-family: 'Inter';
+    border: none;
+    background: black;  
+    color: white;
+    border-radius: 5px;
+    padding: 10px 45px;
+    cursor: pointer;
+
+    &:hover {
+        background: rgb(40, 40, 40);
+    }
+}
+
+.coinable-pay-button-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+}
