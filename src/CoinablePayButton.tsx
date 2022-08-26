@@ -27,8 +27,6 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
     ) => {
       e.preventDefault();
 
-      setLoading(true);
-
       const data = {
         product_id: productId,
         quantity,
@@ -36,22 +34,30 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       };
 
       try {
+        setLoading(true);
+
         const response = await fetch(
-          'http://127.0.0.1:4000/v1/api/checkouts/single',
+          'http://127.0.0.1:4000/v1/api/checkouts/sissdsdsdngle',
           {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           }
         );
+
+        if (response.status !== 200) {
+          throw new Error('Please make sure correct Product id is set.');
+        }
+
         const resp: Record<string, any> = await response.json();
-        if (resp.redirect_url) onSuccess(resp.redirect_url);
-        else {
-          onFailure(
-            "Unexpected error, fetch succedded but couldn't get redirect url from Coinable, try again in a few seconds."
-          );
+
+        if (resp.redirect_url) {
+          onSuccess(resp.redirect_url);
+        } else {
+          throw new Error('Please try again in a few seconds.');
         }
       } catch (error) {
+        setLoading(false);
         onFailure(error.message);
       }
     };
@@ -61,6 +67,7 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
         ref={ref}
         className="coinable-pay-button"
         onClick={handleOnClick}
+        disabled={loading}
         {...props}
       >
         {!loading ? (

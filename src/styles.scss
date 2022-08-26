@@ -16,6 +16,10 @@
     &:hover {
         background: rgb(40, 40, 40);
     }
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 }
 
 .coinable-pay-button-content {
