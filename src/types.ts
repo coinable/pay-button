@@ -1,10 +1,5 @@
 import { ReactNode } from 'react';
 
-export type OnBehalfOf = {
-  originProjectKey: string;
-  serviceChargeRate: number;
-};
-
 export interface CoinablePayButtonProps {
   children?: ReactNode;
   productId: string;
@@ -12,5 +7,4 @@ export interface CoinablePayButtonProps {
   onFailure: (errorMessage: string) => void;
   quantity?: number;
   requestCurrency?: string;
-  onBehalfOf?: OnBehalfOf;
 }

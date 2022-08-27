@@ -16,7 +16,6 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       productId,
       quantity = 1,
       requestCurrency = 'USD',
-      onBehalfOf,
       ...props
     },
     ref
@@ -33,18 +32,6 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
         quantity,
         request_currency: requestCurrency,
       };
-
-      if (onBehalfOf) {
-        data = Object.assign(
-          {
-            on_behalf_of: {
-              origin_project_key: onBehalfOf.originProjectKey,
-              service_charge_rate: onBehalfOf.serviceChargeRate,
-            },
-          },
-          data
-        );
-      }
 
       try {
         setLoading(true);
