@@ -7,4 +7,6 @@ export interface CoinablePayButtonProps {
   onFailure: (errorMessage: string) => void;
   quantity?: number;
   requestCurrency?: string;
+  backgroundColor?: string;
+  textColor?: string;
 }

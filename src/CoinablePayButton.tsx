@@ -16,6 +16,8 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       productId,
       quantity = 1,
       requestCurrency = 'USD',
+      backgroundColor = 'black',
+      textColor = 'white',
       ...props
     },
     ref
@@ -65,6 +67,7 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
         className="coinable-pay-button"
         onClick={handleOnClick}
         disabled={loading}
+        style={{ backgroundColor, color: textColor }}
         {...props}
       >
         {!loading ? (

@@ -7,19 +7,13 @@
     font-size: 18px;
     font-family: 'Inter';
     border: none;
-    background: black;  
-    color: white;
     border-radius: 5px;
     padding-left: 45px;
     padding-right: 45px;
     cursor: pointer;
 
-    &:hover {
-        background: rgb(40, 40, 40);
-    }
-
     &:disabled {
-        background: rgb(40, 40, 40);
+        opacity: 0.6;
         cursor: not-allowed;
     }
 }
