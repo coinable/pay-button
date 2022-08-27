@@ -16,6 +16,7 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       productId,
       quantity = 1,
       requestCurrency = 'USD',
+      onBehalfOf,
       ...props
     },
     ref
@@ -27,23 +28,32 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
     ) => {
       e.preventDefault();
 
-      const data = {
+      let data = {
         product_id: productId,
         quantity,
         request_currency: requestCurrency,
       };
 
+      if (onBehalfOf) {
+        data = Object.assign(
+          {
+            on_behalf_of: {
+              origin_project_key: onBehalfOf.originProjectKey,
+              service_charge_rate: onBehalfOf.serviceChargeRate,
+            },
+          },
+          data
+        );
+      }
+
       try {
         setLoading(true);
 
-        const response = await fetch(
-          `https://api.coinable.dev/v1/api/checkouts/single`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          }
-        );
+        const response = await fetch(`${prod}/v1/api/checkouts/single`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
 
         if (response.status !== 200) {
           throw new Error('Please make sure correct Product id is set.');
