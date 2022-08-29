@@ -1,6 +1,12 @@
 # @coinable/pay-button
 
-An easy to use and setup react integration for your application.
+An easy to setup react integration for your application to start accepting SOL and solana tokens (e.g. USDC, DUST, SAMO) today.
+
+The integration works with [Coinable](https://coinablepay.com/), the Web3 eCommerce stack on Solana, that allows users to accept and manage token payments.
+
+Coinable takes care of the processing, organization, and accounting of commerce related transactions, so that users can focus on their product.
+
+To set up an account and create products to use with the pay button, check out the documentation [here](https://docs.coinablepay.com/guides/start-here).
 
 ## Installation
 
