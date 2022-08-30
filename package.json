@@ -3,6 +3,7 @@
   "version": "1.0.5",
   "description": "",
   "keywords": [],
+  "license": "Apache-2.0",
   "main": "dist/index.js",
   "devDependencies": {
     "@types/react": "^18.0.17",
