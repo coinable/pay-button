@@ -43,7 +43,7 @@ npm install @coinable/pay-button
 | `onSuccess`       | Callback for success response will return a redirect url to the initiated checkout session.|
 | `productId`       | The checkout session will be initiated for this product id.                                |
 | `quantity`        | The quantity of the product to checkout.                                                   |
-| `requestCurrency` | Request currency of the checkout session that is displayed to the customer. |
+| `requestCurrency` | The currency (fiat or token) that is displayed to the customer. |
 
 
 ##### Examples of commonly used `requestCurrency`
