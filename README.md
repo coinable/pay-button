@@ -39,8 +39,18 @@ npm install @coinable/pay-button
 | Name              | Description                                                                                |
 | ----------------- | ------------------------------------------------------------------------------------------ |
 | `children`        | Component children                                                                         |
-| `onFailure`       | Callback for failure response will return a string with the error description              |
-| `onSuccess`       | Callback for success response will return a redirect url to the initiated checkout session |
-| `productId`       | The id of the product that the checkout session will be initiated for                      |
-| `quantity`        | Quantity of the product                                                                    |
-| `requestCurrency` | Request currency of the checkout session, list of possible currencies soon                 |
+| `onFailure`       | Callback for failure response will return a string with the error description.             |
+| `onSuccess`       | Callback for success response will return a redirect url to the initiated checkout session.|
+| `productId`       | The checkout session will be initiated for this product id.                                |
+| `quantity`        | The quantity of the product to checkout.                                                   |
+| `requestCurrency` | Request currency of the checkout session that is displayed to the customer. |
+
+
+##### Examples of commonly used `requestCurrency`
+
+* fiat USD - `USD`
+* fiat EUR - `EUR`
+* fiat AUD - `AUD`
+* Native Sol and Wrapped Sol - `So11111111111111111111111111111111111111112`
+* USDC - `EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`
+* DUST - `DUSTawucrTsGU8hcqRdHDCbuYhCPADMLM2VcCb8VnFnQ`
