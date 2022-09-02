@@ -7,7 +7,7 @@ import './styles.scss';
 
 export const prod = 'https://api.coinablepay.com';
 
-const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
+const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
   (
     {
       children = 'Pay',
@@ -83,6 +83,6 @@ const CoianblePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
   }
 );
 
-CoianblePayButton.displayName = 'CoinablePayButton';
+CoinablePayButton.displayName = 'CoinablePayButton';
 
-export default CoianblePayButton;
+export default CoinablePayButton;
