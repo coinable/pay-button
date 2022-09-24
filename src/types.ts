@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 export interface CoinablePayButtonProps {
   children?: ReactNode;
@@ -11,4 +11,5 @@ export interface CoinablePayButtonProps {
   variant?: string;
   textColor?: string;
   className?: string;
+  style?: CSSProperties;
 }
