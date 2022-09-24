@@ -10,4 +10,5 @@ export interface CoinablePayButtonProps {
   backgroundColor?: string;
   variant?: string;
   textColor?: string;
+  className?: string;
 }
