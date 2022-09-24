@@ -1,11 +1,10 @@
 import React, { forwardRef, MouseEvent, useState } from 'react';
 import Solana from './Solana';
-
+import { COINABLE_API_URL } from './constants';
+import { getErrorMessage } from './helpers';
 import { CoinablePayButtonProps } from './types';
 
 import './styles.scss';
-
-export const prod = 'https://api.coinablepay.com';
 
 const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
   (
@@ -16,8 +15,11 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       productId,
       quantity = 1,
       requestCurrency = 'USD',
-      backgroundColor = 'black',
-      textColor = 'white',
+      backgroundColor,
+      textColor,
+      variant,
+      className,
+      style,
       ...props
     },
     ref
@@ -29,8 +31,12 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
     ) => {
       e.preventDefault();
 
+      // Resetting the error tp undefined on new click
+      onFailure(undefined);
+
       let data = {
         product_id: productId,
+        variant,
         quantity,
         request_currency: requestCurrency,
       };
@@ -38,20 +44,28 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       try {
         setLoading(true);
 
-        const response = await fetch(`${prod}/v1/api/checkouts/single`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          `${COINABLE_API_URL}/v1/api/checkouts/single`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          }
+        );
 
-        if (response.status !== 200) {
-          throw new Error('Please make sure correct Product id is set.');
+        const jsonResponse: Record<string, any> = await response.json();
+
+        if (response.status >= 500) {
+          throw new Error('Please try again in few minutes.');
         }
 
-        const resp: Record<string, any> = await response.json();
+        if (response.status !== 200) {
+          const errorMessage = getErrorMessage(jsonResponse);
+          throw new Error(errorMessage);
+        }
 
-        if (resp.redirect_url) {
-          onSuccess(resp.redirect_url);
+        if (jsonResponse.redirect_url) {
+          onSuccess(jsonResponse.redirect_url);
         } else {
           throw new Error('Please try again in a few seconds.');
         }
@@ -64,10 +78,10 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
     return (
       <button
         ref={ref}
-        className="coinable-pay-button"
+        className={className || 'coinable-pay-button'}
         onClick={handleOnClick}
         disabled={loading}
-        style={{ backgroundColor, color: textColor }}
+        style={{ backgroundColor, color: textColor, ...style }}
         {...props}
       >
         {!loading ? (
