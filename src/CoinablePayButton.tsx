@@ -1,11 +1,9 @@
 import React, { forwardRef, MouseEvent, useState } from 'react';
 import Solana from './Solana';
-
+import { COINABLE_API_URL } from './constants';
 import { CoinablePayButtonProps } from './types';
 
 import './styles.scss';
-
-export const prod = 'https://api.coinablepay.com';
 
 const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
   (
@@ -16,8 +14,9 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       productId,
       quantity = 1,
       requestCurrency = 'USD',
-      backgroundColor = 'black',
-      textColor = 'white',
+      backgroundColor,
+      textColor,
+      variant = undefined,
       ...props
     },
     ref
@@ -29,8 +28,12 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
     ) => {
       e.preventDefault();
 
+      // Resetting the error on new click
+      onFailure(undefined);
+
       let data = {
         product_id: productId,
+        variant,
         quantity,
         request_currency: requestCurrency,
       };
@@ -38,14 +41,19 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       try {
         setLoading(true);
 
-        const response = await fetch(`${prod}/v1/api/checkouts/single`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          `${COINABLE_API_URL}/v1/api/checkouts/single`,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          }
+        );
 
         if (response.status !== 200) {
-          throw new Error('Please make sure correct Product id is set.');
+          throw new Error(
+            'Please make sure correct product id is set and is correct.'
+          );
         }
 
         const resp: Record<string, any> = await response.json();
