@@ -1,6 +1,7 @@
 import React, { forwardRef, MouseEvent, useState } from 'react';
 import Solana from './Solana';
 import { COINABLE_API_URL } from './constants';
+import { getErrorMessage } from './helpers';
 import { CoinablePayButtonProps } from './types';
 
 import './styles.scss';
@@ -28,7 +29,7 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
     ) => {
       e.preventDefault();
 
-      // Resetting the error on new click
+      // Resetting the error tp undefined on new click
       onFailure(undefined);
 
       let data = {
@@ -50,16 +51,19 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
           }
         );
 
-        if (response.status !== 200) {
-          throw new Error(
-            'Please make sure correct product id is set and is correct.'
-          );
+        const jsonResponse: Record<string, any> = await response.json();
+
+        if (response.status >= 500) {
+          throw new Error('Please try again in few minutes.');
         }
 
-        const resp: Record<string, any> = await response.json();
+        if (response.status !== 200) {
+          const errorMessage = getErrorMessage(jsonResponse);
+          throw new Error(errorMessage);
+        }
 
-        if (resp.redirect_url) {
-          onSuccess(resp.redirect_url);
+        if (jsonResponse.redirect_url) {
+          onSuccess(jsonResponse.redirect_url);
         } else {
           throw new Error('Please try again in a few seconds.');
         }
