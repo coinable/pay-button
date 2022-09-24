@@ -8,7 +8,7 @@ Coinable takes care of the processing, organization, and accounting of commerce 
 
 To set up an account and create products to use with the pay button, check out the documentation [here](https://docs.coinablepay.com/guides/start-here).
 
-Please see our [official React documentation](https://docs.coinablepay.com/developers/checkouts/integrations/react) for implementation details.
+Please see our [official package documentation](https://docs.coinablepay.com/developers/checkouts/integrations/react) for implementation details.
 
 ## Installation
 
