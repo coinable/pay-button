@@ -31,7 +31,7 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
     ) => {
       e.preventDefault();
 
-      // Resetting the error tp undefined on new click
+      // Resetting the error to undefined on each new click
       onFailure(undefined);
 
       let data = {
