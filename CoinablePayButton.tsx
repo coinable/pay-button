@@ -29,10 +29,7 @@ const CoinablePayButton = forwardRef<HTMLButtonElement, CoinablePayButtonProps>(
       e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
     ) => {
       e.preventDefault();
-
-      if (variant && variant.length === 0)
-        throw new Error('Please use a valid variant name or remove the prop');
-
+      
       // Resetting the error to undefined on each new click
       onFailure(undefined);
 
